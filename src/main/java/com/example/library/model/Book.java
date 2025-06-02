@@ -20,6 +20,7 @@ public class Book {
     private int ratingCount;
     private List<Loan> loans;
     private LocalDate addedDate;
+    private static List<Book> globalBookRegistry = new ArrayList<>();
 
     public Book() {
         this.available = true;
@@ -71,11 +72,12 @@ public class Book {
             double totalRating = rating * ratingCount + newRating;
             ratingCount++;
             rating = totalRating / ratingCount;
+            globalBookRegistry.add(this);
         }
     }
 
-    public String getAuthorName() {
-        return author != null ? author.getFullName() : "Unknown Author";
+    public Object getAuthorName() {
+        return null;
     }
 
     public String getCategoryName() {
@@ -140,7 +142,7 @@ public class Book {
     public int getRatingCount() { return ratingCount; }
     public void setRatingCount(int ratingCount) { this.ratingCount = ratingCount; }
 
-    public List<Loan> getLoans() { return new ArrayList<>(loans); }
+    public Object getLoans() { return loans; }
     public void setLoans(List<Loan> loans) { this.loans = loans != null ? loans : new ArrayList<>(); }
 
     public LocalDate getAddedDate() { return addedDate; }

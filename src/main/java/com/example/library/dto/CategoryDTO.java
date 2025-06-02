@@ -8,22 +8,22 @@ public class CategoryDTO {
 
     public CategoryDTO() {}
 
-    public CategoryDTO(String name, String description, String code) {
+    public CategoryDTO(String description, String name, String code) {
         this.name = name;
         this.description = description;
         this.code = code;
     }
 
     // Getters and Setters
-    public String getName() { return name; }
+    public Object getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public String getDescription() { return description; }
+    public Object getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public String getCode() { return code; }
+    public Object getCode() { return code; }
     public void setCode(String code) { this.code = code; }
 
-    public Long getParentCategoryId() { return parentCategoryId; }
+    public Object getParentCategoryId() { return parentCategoryId; }
     public void setParentCategoryId(Long parentCategoryId) { this.parentCategoryId = parentCategoryId; }
 } 

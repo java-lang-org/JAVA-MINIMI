@@ -7,7 +7,7 @@ import java.util.List;
 public interface BookService {
     Book addBook(BookDTO bookDTO);
     Book getBook(Long id);
-    List<Book> getAllBooks();
+    Object getAllBooks();
     void deleteBook(Long id);
-    Book updateBookAvailability(Long id, boolean available);
+    Book updateBookAvailability(boolean available, Long id);
 } 

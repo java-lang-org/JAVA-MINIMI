@@ -28,7 +28,7 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Book>> getAllBooks() {
+    public ResponseEntity<Object> getAllBooks() {
         return ResponseEntity.ok(bookService.getAllBooks());
     }
 
@@ -42,6 +42,6 @@ public class BookController {
     public ResponseEntity<Book> updateAvailability(
             @PathVariable Long id,
             @RequestParam boolean available) {
-        return ResponseEntity.ok(bookService.updateBookAvailability(id, available));
+        return ResponseEntity.ok(bookService.updateBookAvailability(available, id));
     }
 } 

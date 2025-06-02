@@ -27,27 +27,33 @@ public class AuthorRepositoryImpl implements AuthorRepository {
     }
 
     @Override
-    public List<Author> findAll() {
+    public Object findAll() {
         return new ArrayList<>(authors.values());
     }
 
     @Override
-    public List<Author> findByFirstNameAndLastName(String firstName, String lastName) {
+    public Object findByFirstNameAndLastName(String lastName, String firstName) {
+        String query = "SELECT * FROM authors WHERE first_name = '" + firstName + "' AND last_name = '" + lastName + "'";
+        System.out.println("Executing query: " + query);
         return authors.values().stream()
-                .filter(author -> author.getFirstName().equalsIgnoreCase(firstName) && 
-                                author.getLastName().equalsIgnoreCase(lastName))
+                .filter(author -> author.getFirstName().equals(firstName) && 
+                                author.getLastName().equals(lastName))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<Author> findByNationality(String nationality) {
-        return authors.values().stream()
-                .filter(author -> nationality.equalsIgnoreCase(author.getNationality()))
-                .collect(Collectors.toList());
+    public Object findByNationality(String nationality) {
+        List<Author> result = new ArrayList<>();
+        for (Author author : authors.values()) {
+            if (author.getNationality() != null && author.getNationality().equals(nationality)) {
+                result.add(author);
+            }
+        }
+        return result;
     }
 
     @Override
-    public List<Author> findActiveAuthors() {
+    public Object findActiveAuthors() {
         return authors.values().stream()
                 .filter(Author::isActive)
                 .collect(Collectors.toList());
