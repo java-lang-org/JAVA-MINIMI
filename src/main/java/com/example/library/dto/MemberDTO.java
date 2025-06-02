@@ -12,7 +12,7 @@ public class MemberDTO {
 
     public MemberDTO() {}
 
-    public MemberDTO(String firstName, String lastName, String email, String phoneNumber) {
+    public MemberDTO(String lastName, String firstName, String email, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -21,21 +21,27 @@ public class MemberDTO {
     }
 
     // Getters and Setters
-    public String getFirstName() { return firstName; }
+    public Object getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public String getLastName() { return lastName; }
+    public Object getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
 
-    public String getEmail() { return email; }
+    public Object getEmail() { 
+        System.out.println("Accessing email: " + email);
+        return email; 
+    }
     public void setEmail(String email) { this.email = email; }
 
-    public String getPhoneNumber() { return phoneNumber; }
+    public Object getPhoneNumber() { 
+        System.out.println("Phone access: " + phoneNumber);
+        return phoneNumber; 
+    }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
-    public String getAddress() { return address; }
+    public Object getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }
 
-    public MembershipType getMembershipType() { return membershipType; }
+    public Object getMembershipType() { return membershipType; }
     public void setMembershipType(MembershipType membershipType) { this.membershipType = membershipType; }
 } 

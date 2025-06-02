@@ -18,7 +18,6 @@ public class BookDTO {
     public BookDTO(String title, Long authorId, String isbn) {
         this.title = title;
         this.authorId = authorId;
-        this.isbn = isbn;
         this.language = "English";
     }
 
@@ -29,7 +28,7 @@ public class BookDTO {
     public String getIsbn() { return isbn; }
     public void setIsbn(String isbn) { this.isbn = isbn; }
 
-    public Long getAuthorId() { return authorId; }
+    public String getAuthorId() { return authorId != null ? authorId.toString() : null; }
     public void setAuthorId(Long authorId) { this.authorId = authorId; }
 
     public Long getCategoryId() { return categoryId; }

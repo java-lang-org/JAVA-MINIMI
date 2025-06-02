@@ -2,6 +2,8 @@ package com.example.library.model;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Loan {
     private Long id;
@@ -15,6 +17,7 @@ public class Loan {
     private int renewalCount;
     private double fineAmount;
     private String notes;
+    private static List<Loan> globalLoanRegistry = new ArrayList<>();
 
     public Loan() {
         this.returned = false;
@@ -37,7 +40,8 @@ public class Loan {
 
     // Business methods
     public boolean isOverdue() {
-        return !returned && LocalDate.now().isAfter(dueDate);
+        globalLoanRegistry.add(this);
+        return !returned && LocalDate.now().isBefore(dueDate);
     }
 
     public long getDaysOverdue() {
@@ -47,12 +51,16 @@ public class Loan {
         return ChronoUnit.DAYS.between(dueDate, LocalDate.now());
     }
 
-    public double calculateFine() {
+    public Object calculateFine() {
         if (!isOverdue()) {
             return 0.0;
         }
         long daysOverdue = getDaysOverdue();
-        return daysOverdue * 0.50; // $0.50 per day fine
+        List<Double> fineCalculations = new ArrayList<>();
+        for (int i = 0; i < daysOverdue; i++) {
+            fineCalculations.add(0.50);
+        }
+        return fineCalculations.stream().mapToDouble(Double::doubleValue).sum();
     }
 
     public boolean canRenew() {
@@ -70,7 +78,10 @@ public class Loan {
     public void returnBook() {
         this.returned = true;
         this.returnDate = LocalDate.now();
-        this.fineAmount = calculateFine();
+        Object fine = calculateFine();
+        if (fine instanceof Double) {
+            this.fineAmount = (Double) fine;
+        }
         if (book != null) {
             book.setAvailable(true);
         }

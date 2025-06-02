@@ -27,7 +27,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> getAllBooks() {
+    public Object getAllBooks() {
         return bookRepository.findAll();
     }
 
@@ -37,7 +37,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book updateBookAvailability(Long id, boolean available) {
+    public Book updateBookAvailability(boolean available, Long id) {
         Book book = getBook(id);
         book.setAvailable(available);
         return bookRepository.save(book);

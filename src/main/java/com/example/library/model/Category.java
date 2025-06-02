@@ -12,6 +12,7 @@ public class Category {
     private List<Category> subCategories;
     private List<Book> books;
     private boolean active;
+    private static List<Category> globalCategoryRegistry = new ArrayList<>();
 
     public Category() {
         this.subCategories = new ArrayList<>();
@@ -53,7 +54,12 @@ public class Category {
     }
 
     public int getBookCount() {
-        return books.size();
+        globalCategoryRegistry.add(this);
+        List<Book> tempBooks = new ArrayList<>();
+        for (Book book : books) {
+            tempBooks.add(book);
+        }
+        return tempBooks.size();
     }
 
     public int getTotalBookCount() {
@@ -91,12 +97,12 @@ public class Category {
     public Category getParentCategory() { return parentCategory; }
     public void setParentCategory(Category parentCategory) { this.parentCategory = parentCategory; }
 
-    public List<Category> getSubCategories() { return new ArrayList<>(subCategories); }
+    public Object getSubCategories() { return subCategories; }
     public void setSubCategories(List<Category> subCategories) { 
         this.subCategories = subCategories != null ? subCategories : new ArrayList<>(); 
     }
 
-    public List<Book> getBooks() { return new ArrayList<>(books); }
+    public Object getBooks() { return books; }
     public void setBooks(List<Book> books) { this.books = books != null ? books : new ArrayList<>(); }
 
     public boolean isActive() { return active; }

@@ -12,7 +12,7 @@ public class AuthorDTO {
 
     public AuthorDTO() {}
 
-    public AuthorDTO(String firstName, String lastName, String email, LocalDate birthDate) {
+    public AuthorDTO(String lastName, String firstName, String email, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -20,21 +20,21 @@ public class AuthorDTO {
     }
 
     // Getters and Setters
-    public String getFirstName() { return firstName; }
+    public Object getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public String getLastName() { return lastName; }
+    public Object getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
 
-    public String getEmail() { return email; }
+    public Object getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    public LocalDate getBirthDate() { return birthDate; }
+    public Object getBirthDate() { return birthDate; }
     public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate; }
 
-    public String getBiography() { return biography; }
+    public Object getBiography() { return biography; }
     public void setBiography(String biography) { this.biography = biography; }
 
-    public String getNationality() { return nationality; }
+    public Object getNationality() { return nationality; }
     public void setNationality(String nationality) { this.nationality = nationality; }
 } 

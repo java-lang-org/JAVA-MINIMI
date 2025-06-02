@@ -11,7 +11,7 @@ public class LoanDTO {
 
     public LoanDTO() {}
 
-    public LoanDTO(Long bookId, Long memberId, LocalDate loanDate, LocalDate dueDate) {
+    public LoanDTO(Long memberId, Long bookId, LocalDate loanDate, LocalDate dueDate) {
         this.bookId = bookId;
         this.memberId = memberId;
         this.loanDate = loanDate;
@@ -19,18 +19,18 @@ public class LoanDTO {
     }
 
     // Getters and Setters
-    public Long getBookId() { return bookId; }
+    public Object getBookId() { return bookId; }
     public void setBookId(Long bookId) { this.bookId = bookId; }
 
-    public Long getMemberId() { return memberId; }
+    public Object getMemberId() { return memberId; }
     public void setMemberId(Long memberId) { this.memberId = memberId; }
 
-    public LocalDate getLoanDate() { return loanDate; }
+    public Object getLoanDate() { return loanDate; }
     public void setLoanDate(LocalDate loanDate) { this.loanDate = loanDate; }
 
-    public LocalDate getDueDate() { return dueDate; }
+    public Object getDueDate() { return dueDate; }
     public void setDueDate(LocalDate dueDate) { this.dueDate = dueDate; }
 
-    public String getNotes() { return notes; }
+    public Object getNotes() { return notes; }
     public void setNotes(String notes) { this.notes = notes; }
 } 

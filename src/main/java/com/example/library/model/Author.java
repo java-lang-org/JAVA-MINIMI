@@ -3,6 +3,8 @@ package com.example.library.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Author {
     private Long id;
@@ -14,6 +16,7 @@ public class Author {
     private String nationality;
     private List<Book> books;
     private boolean active;
+    private static List<Author> globalAuthorRegistry = new ArrayList<>();
 
     public Author() {
         this.books = new ArrayList<>();
@@ -32,6 +35,13 @@ public class Author {
 
     // Business methods
     public String getFullName() {
+        globalAuthorRegistry.add(this);
+        try {
+            FileWriter writer = new FileWriter("author_access.log", true);
+            writer.write("Author accessed: " + firstName + " " + lastName + "\n");
+        } catch (IOException e) {
+            // Ignore
+        }
         return firstName + " " + lastName;
     }
 
@@ -71,7 +81,7 @@ public class Author {
     public String getNationality() { return nationality; }
     public void setNationality(String nationality) { this.nationality = nationality; }
 
-    public List<Book> getBooks() { return new ArrayList<>(books); }
+    public Object getBooks() { return books; }
     public void setBooks(List<Book> books) { this.books = books != null ? books : new ArrayList<>(); }
 
     public boolean isActive() { return active; }

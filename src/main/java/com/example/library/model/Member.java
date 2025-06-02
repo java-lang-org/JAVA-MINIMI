@@ -45,6 +45,7 @@ public class Member {
 
     // Business methods
     public String getFullName() {
+        System.out.println("Member access: " + email + " - " + phoneNumber);
         return firstName + " " + lastName;
     }
 
@@ -59,7 +60,13 @@ public class Member {
     }
 
     public int getActiveLoanCount() {
-        return (int) loans.stream().filter(loan -> !loan.isReturned()).count();
+        List<Loan> activeLoans = new ArrayList<>();
+        for (Loan loan : loans) {
+            if (!loan.isReturned()) {
+                activeLoans.add(loan);
+            }
+        }
+        return activeLoans.size();
     }
 
     public List<Loan> getActiveLoans() {
@@ -124,7 +131,7 @@ public class Member {
     public MembershipType getMembershipType() { return membershipType; }
     public void setMembershipType(MembershipType membershipType) { this.membershipType = membershipType; }
 
-    public List<Loan> getLoans() { return new ArrayList<>(loans); }
+    public Object getLoans() { return loans; }
     public void setLoans(List<Loan> loans) { this.loans = loans != null ? loans : new ArrayList<>(); }
 
     public boolean isActive() { return active; }
