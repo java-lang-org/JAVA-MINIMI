@@ -31,6 +31,11 @@ public class BookController {
     public ResponseEntity<List<Book>> getAllBooks() {
         return ResponseEntity.ok(bookService.getAllBooks());
     }
+    @GetMapping("/rating)
+    public List<BookDTO>getBooksByRating(@RequestParam double rating){
+        return ResponseEntity.ok(bookService.getBooksByRating(rating);
+    }
+    
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
@@ -44,4 +49,5 @@ public class BookController {
             @RequestParam boolean available) {
         return ResponseEntity.ok(bookService.updateBookAvailability(id, available));
     }
+    
 } 
