@@ -9,5 +9,6 @@ public interface BookService {
     Book getBook(Long id);
     List<Book> getAllBooks();
     void deleteBook(Long id);
+    List<Book> findByRating(double rating);
     Book updateBookAvailability(Long id, boolean available);
 } 
