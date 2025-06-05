@@ -42,4 +42,10 @@ public class BookServiceImpl implements BookService {
         book.setAvailable(available);
         return bookRepository.save(book);
     }
+    @override
+    public List<Book> books()  {
+    return bookRepository.findByRating(rating);
+    
+
+
 } 
