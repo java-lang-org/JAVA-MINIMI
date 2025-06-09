@@ -30,6 +30,10 @@ public class BookServiceImpl implements BookService {
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
+    @Override
+    public List<Book> getAllBooksByRating() {
+        return bookRepository.findBooksByRating(rating);.orElseThrow(() -> new BookNotFoundException("Books not found with rating: " + rating));
+    }
 
     @Override
     public void deleteBook(Long id) {
